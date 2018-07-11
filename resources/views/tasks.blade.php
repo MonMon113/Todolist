@@ -3,22 +3,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @if (count($tasks) > 0)
-        <ul>
-            @foreach ($tasks as $task)
-                <li class="table-text">
-                    <div class="nametask">{{ $task->taskname }}</div>
-                    <form action="{{ url('task/'.$task->id) }}" method="POST" class="deltask">
-                        {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
-                        <button class="but">Delete Task</button>
-                    </form>
-                </li>
-            @endforeach
-        </ul>
-    @endif
-@endsection
-
 <div class="panel-body">
     <form action="{{url('task')}}" method="post" class="form-horizontal">
     {{ csrf_field() }}
@@ -31,3 +15,18 @@
         </div>
     </form>
 </div>
+    @if (count($tasks) > 0)
+        <ul>
+            @foreach ($tasks as $task)
+                <li class="table-text">
+                    <div class="nametask">{{ $task->name }}</div>
+                    <form action="{{ url('task/'.$task->id) }}" method="POST" class="deltask">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <button class="but">Delete Task</button>
+                    </form>
+                </li>
+            @endforeach
+        </ul>
+    @endif
+@endsection
